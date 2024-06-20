@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash Board </title>
+    <link rel="stylesheet" href="Dashboard.css">
+    
+</head>
+<body>
+    <img src="Images/smart logo.jpg" alt="Logo" class="logo" >
+    <a href="index.html">
+        <button class="signout-btn" id="logout">Sign Out</button>
+        </a>
+    
+    <header>
+        <h1 >Welcome to the Dashboard of Smart Irrigation </h1>
+    </header>
+    
+
+    <nav>
+        <a href="#" onclick="showProfile()">Profile</a>
+        <a href="#" onclick="showVideo()">Drone Live Streaming</a>
+        <a href="#" onclick="showImages()">Drone Captured Images</a>
+        <a href="#" onclick="showPestdetection()">Crop Pest Detection</a>
+        <a href="#" onclick="showSuggestions()">Drone Suggestions</a>
+        
+    </nav>
+
+    <div class="container">
+        <div class="profile-section" id="profile">
+            <h1>Your Profile</h1>
+            <p>Welcome to your profile section! Here you can manage your drone projects and explore exciting features.</p>
+        </div>
+
+        <div class="video-section" id="video">
+            <h1 Style="font-style: italic;">Drone Live Streaming </h1>
+            <div class="video-container">
+                <iframe  width="560" height="315" src="https://www.youtube.com/embed/WeDvNscRRPE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+            </div>
+        </div>
+
+        <div class="images-section" id="images">
+            <h1 >Drone Captured Images</h1>
+            <img src="Images/drone1.jpeg" alt="Drone Image 1">
+            <img src="Images/drone2.jpeg" alt="Drone Image 2">
+            <img src="Images/drone3.jpeg" alt="Drone Image 3">
+
+            
+            
+        </div>
+        <div class="pest-section" id="pest">
+            <h1> Pest Detection</h1>
+            <div class="video-container">
+                <iframe  width="560" height="400" src="https://detect.roboflow.com/?model=smart-irrigation-gvdgh&version=1&api_key=hoZY3Do8kwVh7xF3WXng" frameborder="0"  allowfullscreen ></iframe>
+            </div>
+
+        </div>
+
+
+        <div class="suggestion-section" id="suggestions">
+            <h1 style="font-size: 50px; font-style: italic;text-align: center;">Drone Suggestions</h1>
+            <label for="audioSuggestion">Smart Irrigation  Suggestion:</label>
+            <textarea id="audioSuggestion" name="audioSuggestion" rows="4" cols="50"></textarea><br>
+            <label for="textSuggestion">Farmer Text Suggestion:</label>
+            <textarea id="textSuggestion" name="textSuggestion" rows="4" cols="50"></textarea><br>
+            <button onclick="submitSuggestions()">Submit Suggestions</button>
+        </div>
+    </div>
+
+    <script>
+        function showProfile() {
+            hideAllSections();
+            document.getElementById('profile').style.display = 'block';
+        }
+
+        function showVideo() {
+            hideAllSections();
+            document.getElementById('video').style.display = 'block';
+        }
+
+        function showImages() {// Clear any existing content in the images section
+            hideAllSections();
+            document.getElementById('images').style.display = 'block';
+
+    
+        }
+        function showPestdetection() {
+            hideAllSections();
+            document.getElementById('pest').style.display = 'block';
+        }
+
+        function showSuggestions() {
+            hideAllSections();
+            document.getElementById('suggestions').style.display = 'block';
+        }
+
+        function hideAllSections() {
+            const sections = document.querySelectorAll('.profile-section, .video-section, .images-section, .suggestion-section, .pest-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+        }
+
+        function submitSuggestions() {
+            const audioSuggestion = document.getElementById('audioSuggestion').value;
+            const textSuggestion = document.getElementById('textSuggestion').value;
+
+            // Here you can handle the submission of suggestions, for example, sending them to a server
+            console.log('Audio Suggestion:', audioSuggestion);
+            console.log('Text Suggestion:', textSuggestion);
+
+            // Clear input fields after submission
+            document.getElementById('audioSuggestion').value = '';
+            document.getElementById('textSuggestion').value = '';
+
+            alert('Suggestions submitted successfully!');
+        }
+
+        document.getElementById("logout").addEventListener("click", function() {
+		  signOut(auth).then(() => {
+			  // Sign-out successful.
+			  console.log('Sign-out successful.');
+			  alert('Sign-out successful.');
+			  document.getElementById('logout').style.display = 'none';
+			}).catch((error) => {
+			  // An error happened.
+			  console.log('An error happened.');
+			});		  		  
+	  });
+	  
+    </script>
+</body>
+</html>
